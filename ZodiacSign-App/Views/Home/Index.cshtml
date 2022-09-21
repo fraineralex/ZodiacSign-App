@@ -1,0 +1,44 @@
+﻿@*Strong typed*@
+@model Application.ViewModel.ZodiacSignListViewModel
+
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="text-center mt-5">
+    <div class="col-6 mx-auto">
+        <h1 class="display-4 fw-bold text-primary">Zodiac Sign App</h1>
+        <p class="fs-5">Welcome to Zodiac Sign App where from your date of birth we can determine your zodiac sign</p>
+    </div>
+    <div class="row mt-3 mb-5 mt-5">
+        <div class="col-6 mx-auto">
+            <div class="card bg-light rounded mb-5">
+                <div class="card-header bg-primary text-center ms-0 me-0 text-white">
+                    <h3>Enter your date of birth</h3>
+                </div>
+
+                <div class="card-body">
+
+                    <form method="post" asp-controller="Home" asp-action="GetSign" class="mb-5">
+                        <label class="mt-3 float-start fs-5 fw-bold mb-2" for="month">Enter your month of birth</label>
+                        <input type="number" name="Month" id="month" min="01" max="12" class="form-control" />
+
+                        <label class="mt-3 float-start fs-5 fw-bold mb-2" for="day">Enter your day of birth</label>
+                        <input type="number" name="Day" id="day" min="01" max="31" class="form-control" />
+
+                        <button class="btn btn-lg px-5 btn-primary float-end me-2 mt-3 mb-5" type="submit">Send</button>
+                    </form>
+
+                    @if (Model.ZodiacSign.Count != 0)
+                    {
+                        <div class="mt-5">
+                            <h3 class="mt-5">Your zodiac sign is: <i class="text-primary">@Model.ZodiacSign[Model.ZodiacSign.Count - 1].Sign</i></h3>
+                        </div>
+                    }
+                
+                </div>
+
+             </div>
+        </div>
+    </div>
+</div>
